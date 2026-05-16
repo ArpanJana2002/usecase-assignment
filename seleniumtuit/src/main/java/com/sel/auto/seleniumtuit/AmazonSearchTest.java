@@ -54,12 +54,10 @@ public class AmazonSearchTest {
         
         System.out.println("Found search results, selecting first product...");
         
-        // Get first product result card
         WebElement firstCard = explicitWait.until(
             ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-component-type='s-search-result']"))
         );
         
-        // Find product link using the correct selector
         WebElement productLink = firstCard.findElement(
             By.cssSelector("a.a-link-normal.s-underline-text.s-underline-link-text.s-link-style.a-text-normal")
         );
@@ -70,7 +68,6 @@ public class AmazonSearchTest {
         
         System.out.println("Clicked on product: " + productLink.getText());
         
-        // Wait for product page to load
         explicitWait.until(
             ExpectedConditions.urlContains("/dp/")
         );
@@ -107,6 +104,7 @@ public class AmazonSearchTest {
             ExpectedConditions.elementToBeClickable(By.id("buy-now-button"))
         );
         JavascriptExecutor js = (JavascriptExecutor) webdriver;
+        js.executeScript("arguments[0].scrollIntoView(true);", buyNowButton);
         js.executeScript("arguments[0].click();", buyNowButton);
         System.out.println("Buy Now clicked!");
     }
@@ -124,6 +122,97 @@ public class AmazonSearchTest {
         System.out.println("Product in cart: " + productInCart);
     }
 
+    void proceedToCheckout() {
+        System.out.println("Proceeding to checkout...");
+        
+        explicitWait.until(
+            ExpectedConditions.visibilityOfElementLocated(By.id("shopping-cart-elements"))
+        );
+        
+        WebElement checkoutButton = explicitWait.until(
+            ExpectedConditions.elementToBeClickable(
+                By.cssSelector("#sc-checkout-submit-btn")
+            )
+        );
+        
+        JavascriptExecutor js = (JavascriptExecutor) webdriver;
+        js.executeScript("arguments[0].scrollIntoView(true);", checkoutButton);
+        js.executeScript("arguments[0].click();", checkoutButton);
+        
+        System.out.println("Proceed to checkout clicked!");
+        
+        explicitWait.until(
+            ExpectedConditions.urlContains("/ap/signin") || 
+            ExpectedConditions.urlContains("/checkout/")
+        );
+        
+        if (webdriver.getCurrentUrl().contains("/ap/signin")) {
+            System.out.println("Login required for checkout. Please login manually.");
+            System.out.println("Waiting for manual login...");
+            waitForManualLogin();
+        } else {
+            System.out.println("Checkout page loaded: " + webdriver.getCurrentUrl());
+        }
+    }
+
+    void waitForManualLogin() {
+        System.out.println("Please login manually. The test will continue after 10 seconds...");
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void placeOrder() {
+        System.out.println("Attempting to place order...");
+        
+        explicitWait.until(
+            ExpectedConditions.presenceOfElementLocated(By.cssSelector(".a-section"))
+        );
+        
+        String currentUrl = webdriver.getCurrentUrl();
+        System.out.println("Current URL: " + currentUrl);
+        
+        if (currentUrl.contains("/checkout/gl")) {
+            try {
+                WebElement placeOrderButton = explicitWait.withTimeout(Duration.ofSeconds(5))
+                    .until(ExpectedConditions.elementToBeClickable(
+                        By.id("submitOrderButton")
+                    ));
+                
+                JavascriptExecutor js = (JavascriptExecutor) webdriver;
+                js.executeScript("arguments[0].scrollIntoView(true);", placeOrderButton);
+                js.executeScript("arguments[0].click();", placeOrderButton);
+                
+                System.out.println("Order placed successfully!");
+            } catch (Exception e) {
+                System.out.println("Unable to place order automatically. Payment/shipping details may be required.");
+                System.out.println("Manual intervention needed for checkout completion.");
+            }
+        } else {
+            System.out.println("Not on order placement page. Full checkout requires pre-saved payment/shipping details.");
+        }
+    }
+
+    void checkoutCompleteFlow() {
+        System.out.println("Starting Complete Checkout Flow");
+        
+        goToCart();
+        validateCart();
+        proceedToCheckout();
+        
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        
+        placeOrder();
+        
+        System.out.println("Checkout Flow Complete");
+    }
+
     public static void main(String[] args) {
         AmazonSearchTest test = new AmazonSearchTest();
         test.navigateToURL();
@@ -131,8 +220,8 @@ public class AmazonSearchTest {
         test.performSearch();
         test.selectFirstProduct();
         test.addToCart();
-        test.goToCart();
-        test.validateCart();
+        
+        test.checkoutCompleteFlow();
         
         try {
             Thread.sleep(5000);
