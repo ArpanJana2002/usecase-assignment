@@ -1,4 +1,4 @@
-package com.datadriven.testing;
+package com.sel.auto.seleniumtuit;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
