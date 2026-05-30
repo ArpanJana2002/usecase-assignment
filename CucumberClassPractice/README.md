@@ -33,5 +33,5 @@ The project uses the following dependencies:
 
 ### Clone the Repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/ArpanJana2002/usecase-assignment/tree/main/CucumberClassPractice
 cd CucumberClassPractice
