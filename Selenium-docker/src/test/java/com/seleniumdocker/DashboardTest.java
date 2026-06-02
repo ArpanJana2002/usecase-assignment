@@ -50,7 +50,7 @@ public class DashboardTest extends BaseTest {
 		WebElement header = driver.findElement(By.xpath("//h6[text()='Admin']"));
 
 		Assert.assertTrue(header.isDisplayed());
-		System.out.println("Admin Page loaded ✅");
+		System.out.println("Admin Page loaded");
 	}
 
 }
