@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+
+  # OrangeHRM Application
+  orangehrm:
+    image: orangehrm/orangehrm:latest
+    container_name: orangehrm
+    ports:
+      - "8080:80"
+
+  # Selenium Hub
+  selenium-hub:
+    image: selenium/hub:4.18.1
+    container_name: selenium-hub
+    ports:
+      - "4444:4444"
+    depends_on:
+      - orangehrm
+
+  # Chrome Node
+  chrome:
+    image: selenium/node-chrome:4.18.1
+    container_name: chrome-node
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    shm_size: "2gb"
+
+  # Test Runner
+  tests:
+    build: .
+    container_name: test-runner
+    depends_on:
+      - chrome
+    environment:
+      - GRID_URL=http://selenium-hub:4444/wd/hub
+      - APP_URL=http://orangehrm:80
