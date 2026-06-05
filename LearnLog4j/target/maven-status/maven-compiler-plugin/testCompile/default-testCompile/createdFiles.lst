@@ -1,0 +1,4 @@
+com\log\test\TestCase.class
+com\log\test\login\LoginTest.class
+com\log\test\base\BaseTest.class
+com\log\test\login\LoginPage.class

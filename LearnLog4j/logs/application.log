@@ -1,0 +1,39 @@
+2026-06-05 13:10:36.342 [main] INFO  com.log.test.TestCase - Starting Selenium test...
+2026-06-05 13:11:12.136 [main] DEBUG com.log.test.TestCase - WebDriver initialized
+2026-06-05 13:11:13.293 [main] INFO  com.log.test.TestCase - Opened Google homepage
+2026-06-05 13:11:14.353 [main] INFO  com.log.test.TestCase - Test completed
+2026-06-05 13:30:53.411 [main] INFO  com.log.test.base.BaseTest - Initializing WebDriver
+2026-06-05 13:30:59.284 [main] INFO  com.log.test.base.BaseTest - Opened OrangeHRM login page
+2026-06-05 13:30:59.501 [main] INFO  com.log.test.login.LoginTest - Starting valid login test
+2026-06-05 13:30:59.506 [main] INFO  com.log.test.login.LoginPage - Entering username: Admin
+2026-06-05 13:30:59.594 [main] INFO  com.log.test.base.BaseTest - Closing WebDriver
+2026-06-05 13:33:41.774 [main] INFO  com.log.test.base.BaseTest - Initializing WebDriver
+2026-06-05 13:33:44.654 [main] INFO  com.log.test.base.BaseTest - Navigating to OrangeHRM login page
+2026-06-05 13:33:47.065 [main] INFO  com.log.test.base.BaseTest - Page loaded: https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+2026-06-05 13:33:47.219 [main] INFO  com.log.test.login.LoginTest - Starting valid login test
+2026-06-05 13:33:47.222 [main] INFO  com.log.test.login.LoginPage - Entering username: Admin
+2026-06-05 13:33:47.791 [main] INFO  com.log.test.login.LoginPage - Entering password
+2026-06-05 13:33:47.971 [main] INFO  com.log.test.login.LoginPage - Clicking login button
+2026-06-05 13:33:49.314 [main] INFO  com.log.test.login.LoginPage - Login executed with username: Admin
+2026-06-05 13:33:49.819 [main] INFO  com.log.test.login.LoginTest - Valid login test passed
+2026-06-05 13:33:49.845 [main] INFO  com.log.test.base.BaseTest - Closing WebDriver
+2026-06-05 13:40:44.844 [main] INFO  com.log.test.base.BaseTest - Initializing WebDriver
+2026-06-05 13:40:48.434 [main] INFO  com.log.test.base.BaseTest - Navigating to OrangeHRM login page
+2026-06-05 13:40:50.919 [main] INFO  com.log.test.base.BaseTest - Page loaded: https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+2026-06-05 13:40:51.083 [main] INFO  com.log.test.login.LoginTest - Starting valid login test
+2026-06-05 13:40:51.085 [main] INFO  com.log.test.login.LoginPage - Entering username: Admin
+2026-06-05 13:40:51.547 [main] INFO  com.log.test.login.LoginPage - Entering password
+2026-06-05 13:40:51.691 [main] INFO  com.log.test.login.LoginPage - Clicking login button
+2026-06-05 13:40:51.793 [main] INFO  com.log.test.login.LoginPage - Login executed with username: Admin
+2026-06-05 13:40:53.275 [main] INFO  com.log.test.login.LoginTest - Valid login test passed
+2026-06-05 13:40:53.301 [main] INFO  com.log.test.base.BaseTest - Closing WebDriver
+2026-06-05 14:54:31.150 [main] INFO  com.log.test.base.BaseTest - Initializing WebDriver
+2026-06-05 14:54:42.232 [main] INFO  com.log.test.base.BaseTest - Navigating to OrangeHRM login page
+2026-06-05 14:54:45.029 [main] INFO  com.log.test.base.BaseTest - Page loaded: https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+2026-06-05 14:54:45.195 [main] INFO  com.log.test.login.LoginTest - Starting valid login test
+2026-06-05 14:54:45.197 [main] INFO  com.log.test.login.LoginPage - Entering username: Admin
+2026-06-05 14:54:46.622 [main] INFO  com.log.test.login.LoginPage - Entering password
+2026-06-05 14:54:46.922 [main] INFO  com.log.test.login.LoginPage - Clicking login button
+2026-06-05 14:54:47.414 [main] INFO  com.log.test.login.LoginPage - Login executed with username: Admin
+2026-06-05 14:54:50.919 [main] INFO  com.log.test.login.LoginTest - Valid login test passed
+2026-06-05 14:54:50.969 [main] INFO  com.log.test.base.BaseTest - Closing WebDriver
